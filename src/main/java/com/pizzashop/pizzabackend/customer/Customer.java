@@ -1,7 +1,8 @@
 package com.pizzashop.pizzabackend.customer;
 
 import jakarta.persistence.*;
-@Entity@Table(name = "customers")
+@Entity
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +18,13 @@ public class Customer {
     private String state;
     private String country;
     private String majorIntersection;
+    private String phoneNumber;
 
     public Customer() {
 
     }
     // Customer construct
-    public Customer(String firstName, String lastName, String email, String password, String subdivision, String address, String city, String state, String country, String majorIntersection) {
+    public Customer(String firstName, String lastName, String email, String password, String subdivision, String address, String city, String state, String country, String majorIntersection, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -33,6 +35,7 @@ public class Customer {
         this.state = state;
         this.country = country;
         this.majorIntersection = majorIntersection;
+        this.phoneNumber = phoneNumber;
     }
 
     // Getter methods
@@ -69,6 +72,9 @@ public class Customer {
     public String getMajorIntersection() {
         return majorIntersection;
     }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
     // Setter methods
     public void setId(Long id) {
@@ -103,6 +109,9 @@ public class Customer {
     }
     public void setMajorIntersection(String majorIntersection) {
         this.majorIntersection = majorIntersection;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 }
