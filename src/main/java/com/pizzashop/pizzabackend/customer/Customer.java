@@ -1,5 +1,5 @@
 package com.pizzashop.pizzabackend.customer;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 @Entity
 @Table(name = "customers")
@@ -11,6 +11,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String subdivision;
     private String address;

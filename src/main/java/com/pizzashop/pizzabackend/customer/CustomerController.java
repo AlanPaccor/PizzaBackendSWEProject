@@ -1,22 +1,28 @@
 package com.pizzashop.pizzabackend.customer;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customers")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CustomerController {
 
     private final CustomerRepository customerRepository;
-
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
     @PostMapping
-    public Customer create(@RequestBody Customer customer) {
-        return customerRepository.save(customer);
+    public ResponseEntity<Customer> create(@RequestBody Customer customer) {
+        Customer savedCustomer = customerRepository.save(customer);
+        return ResponseEntity.ok(savedCustomer);
     }
+
     @GetMapping("/{phoneNumber}")
-    public Optional<Customer> getCustomer(@PathVariable String phoneNumber) {
-        return customerRepository.findByPhoneNumber((phoneNumber));
+    public ResponseEntity<Customer> getCustomer(
+            @PathVariable String phoneNumber) {
+        return customerRepository.findByPhoneNumber(phoneNumber)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
