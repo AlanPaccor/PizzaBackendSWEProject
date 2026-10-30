@@ -1,10 +1,13 @@
 package com.pizzashop.pizzabackend.menu;
+
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/menu")
 public class MenuController {
+
     private final MenuItemRepository menuItemRepository;
 
     public MenuController(MenuItemRepository menuItemRepository) {
@@ -25,5 +28,4 @@ public class MenuController {
     public MenuItem createMenuItem(@RequestBody MenuItem menuItem) {
         return menuItemRepository.save(menuItem);
     }
-
 }
